@@ -19,9 +19,6 @@
 #   s4 = time to start
 #   s5 = time to end
 
-
-
-# انتقالی از کد بعدی
 .text
 			j	main								# Jump to main-routine
 			
