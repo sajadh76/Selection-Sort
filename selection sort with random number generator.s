@@ -108,6 +108,7 @@ j	LOOP
 			#how much time we need to sort 1000 random numbers
 			#with selection_sort algorithm
 			
+			
 	exit_get:
 	        #seting time to start
 			li $v0 , 30
