@@ -29,10 +29,9 @@
 			
 			li $v0, 1000                        
 			move    $s2, $v0					# $s2 = n   
-			sll	$s0, $v0, 2						# $s0=n*4    
+			sll	$s0, $v0, 2			                # $s0=n*4    
 			sub	$sp, $sp, $s0					# This instruction creates a stack 
-												# frame large enough to contain
-												# the array					
+										# frame large enough to contain the array												# the array					
 
 			move	$s1, $zero					# seting array counter to 0
 			
@@ -92,12 +91,12 @@ j	LOOP
 	for_get:
 	
 			bge	$s1, $s2, exit_get				# if i>=n go to exit_get         
-			sll	$t0, $s1, 2						# $t0=i*4                        
+			sll	$t0, $s1, 2					# $t0=i*4                        
 			add	$t1, $t0, $sp					# $t1=$sp+i*4
 						                                  							  
 			move $v0, $t8						# Get one element of the array
-			sw	$v0, 0($t1)						# The element is stored
-												# at the address $t1
+			sw	$v0, 0($t1)					# The element is stored
+										# at the address $t1
 			la	$a0, end_n_option               
 			li	$v0, 4
 			syscall
@@ -117,22 +116,22 @@ j	LOOP
 			move	$a0, $sp					# $a0=base address af the array       
 			move	$a1, $s2					# $a1=size of the array           
 
-			jal	isort							# isort(a,n)             
-												# In this moment the array has been 
-												# sorted and is in the stack frame 
-			la	$a0, sorted_array_msg			# Print of sorted_array_msg     
+			jal	isort						# isort(a,n)             
+										# In this moment the array has been 
+										# sorted and is in the stack frame 
+			la	$a0, sorted_array_msg				# Print of sorted_array_msg     
 			li	$v0, 4
 			syscall
 
 			move	$s1, $zero					# counter = 0
 			
-	for_print:                                  # this loop prints the sorted array
+	for_print:                             				        # this loop prints the sorted array
 	
-			bge	$s1, $s2, exit_print			# if i>=n go to exit_print          
-			sll	$t0, $s1, 2						# $t0=i*4                       
+			bge	$s1, $s2, exit_print				# if i>=n go to exit_print          
+			sll	$t0, $s1, 2					# $t0=i*4                       
 			add	$t1, $sp, $t0					# $t1=address of a[i]               
 			lw	$a0, 0($t1)						                                  
-			li	$v0, 1							# print of the element a[i]         
+			li	$v0, 1						# print of the element a[i]         
 			syscall								
 			la	$a0, end_n_option
 			li	$v0, 4
@@ -149,26 +148,26 @@ j	LOOP
 			li $v0, 1
 			syscall
 			add	$sp, $sp, $s0					# elimination of the stack frame 
-   			li	$v0, 10							# EXIT
-			syscall										
+   			li	$v0, 10						# EXIT
+			syscall									
 				
 	## selection_sort
 	
 	isort:
 	
-			addi	$sp, $sp, -20				# save values on stack
-			sw	$ra, 0($sp)                     # 
-			sw	$s0, 4($sp)                     #
-			sw	$s1, 8($sp)                     #
-			sw	$s2, 12($sp)                    #
-			sw	$s3, 16($sp)                    #
+			addi	$sp, $sp, -20					# save values on stack
+			sw	$ra, 0($sp)                    			# 
+			sw	$s0, 4($sp)                  		        #
+			sw	$s1, 8($sp)                    		        #
+			sw	$s2, 12($sp)                   		        #
+			sw	$s3, 16($sp)                    		#
 			move 	$s0, $a0					# base address of the array
 			move	$s1, $zero					# counter=0
-			sub	$s2, $a1, 1						# lenght -1
+			sub	$s2, $a1, 1					# lenght -1
 			
 	isort_for:	
 	
-			bge 	$s1, $s2, isort_exit		# if counter >= length-1 -> exit loop
+			bge 	$s1, $s2, isort_exit				# if counter >= length-1 -> exit loop
 		
 			move	$a0, $s0					# base address
 			move	$a1, $s1					# i      
@@ -181,17 +180,17 @@ j	LOOP
 			move	$a2, $s3					# mini
 			jal	swap
 			addi	$s1, $s1, 1					# counter += 1
-			j	isort_for						# go back to the beginning of the loop
+			j	isort_for					# go back to the beginning of the loop
 		
 	isort_exit:
 	
-			lw	$ra, 0($sp)						# restore values from stack
+			lw	$ra, 0($sp)					# restore values from stack
 			lw	$s0, 4($sp)
 			lw	$s1, 8($sp)
 			lw	$s2, 12($sp)
 			lw	$s3, 16($sp)
-			addi	$sp, $sp, 20				# restore stack pointer
-			jr	$ra								# return
+			addi	$sp, $sp, 20					# restore stack pointer
+			jr	$ra						# return
 
 
 	## index_minimum routine
@@ -200,19 +199,19 @@ j	LOOP
 			move	$t0, $a0					# base of the array
 			move	$t1, $a1					# mini = first = counter
 			move	$t2, $a2					# last
-			sll	$t3, $t1, 2						# first * 4
+			sll	$t3, $t1, 2					# first * 4
 			add	$t3, $t3, $t0					# index = base array + first * 4		
-			lw	$t4, 0($t3)						# min = v[first]
+			lw	$t4, 0($t3)					# min = v[first]
 			addi	$t5, $t1, 1					# counter = 0         
 			
 	mini_for:
 	
 			bgt	$t5, $t2, mini_end				# go to min_end
-			sll	$t6, $t5, 2						# counter * 4
+			sll	$t6, $t5, 2					# counter * 4
 			add	$t6, $t6, $t0					# index = base array + counter * 4		
-			lw	$t7, 0($t6)						# v[index]
+			lw	$t7, 0($t6)					# v[index]
 
-			bge	$t7, $t4, mini_if_exit			# skip the if when v[counter] >= min
+			bge	$t7, $t4, mini_if_exit				# skip the if when v[counter] >= min
 		
 			move	$t1, $t5					# mini = counter
 			move	$t4, $t7					# min = v[counter]
@@ -231,17 +230,16 @@ j	LOOP
 	
 	swap:
 	
-			sll	$t1, $a1, 2						# counter * 4
+			sll	$t1, $a1, 2					# counter * 4
 			add	$t1, $a0, $t1					# v + counter * 4
 		
-			sll	$t2, $a2, 2						# j * 4
+			sll	$t2, $a2, 2					# j * 4
 			add	$t2, $a0, $t2					# v + j * 4
 
-			lw	$t0, 0($t1)						# v[counter]
-			lw	$t3, 0($t2)						# v[j]
-
-			sw	$t3, 0($t1)						# v[counter] = v[j]
-			sw	$t0, 0($t2)						# v[j] = $t0
+			lw	$t0, 0($t1)					# v[counter]
+			lw	$t3, 0($t2)					# v[j]
+			sw	$t3, 0($t1)					# v[counter] = v[j]
+			sw	$t0, 0($t2)					# v[j] = $t0
 
 			jr	$ra
 			
