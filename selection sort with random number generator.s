@@ -20,7 +20,7 @@
 #   s5 = time to end
 
 .text
-			j	main								# Jump to main-routine
+			j	main						# Jump to main-routine
 			
 			.text
 			.globl	main
