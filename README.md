@@ -15,7 +15,7 @@ Measures the time taken to perform the sorting using a timer based on system tim
 This time measurement is used to evaluate and compare the efficiency of the selection sort algorithm.
 Instructions
 
-# To assemble and run this project:
+# To assemble and run this project
 Use the MARS (MIPS Assembler and Runtime Simulator) assembler.
 Open the provided MIPS assembly code in MARS.
 Execute the program to generate random numbers, perform selection sort, and calculate the sorting time.
