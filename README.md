@@ -20,5 +20,3 @@ Use the MARS (MIPS Assembler and Runtime Simulator) assembler.
 Open the provided MIPS assembly code in MARS.
 Execute the program to generate random numbers, perform selection sort, and calculate the sorting time.
 
-# Purpose
-This project was originally developed as part of my bachelor's degree coursework, focusing on computer architecture concepts and MIPS assembly programming. Additionally, it provides a basis for comparing sorting algorithms and their execution times across different languages and platforms.
